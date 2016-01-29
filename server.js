@@ -1,8 +1,27 @@
 var express = require('express');
+
+var CONFIG = require('./config.json');
+
 var app = express();
 
-var PORT = 3000;
+// dont need to require in jade
+// express does this internally
+app.set('views', 'views');
+app.set('view engine', 'jade');
 
-var server = app.listen(PORT, function () {
+app.get('/login', function (req, res) {
+  res.render('login');
+});
+
+app.post('/login', function (req, res) {
+  // TODO: Implement Logins!
+  res.send('logging in...');
+});
+
+app.get('/secret', function (req, res) {
+  res.render('secret');
+});
+
+var server = app.listen(CONFIG.PORT, function () {
   console.log('Listening on port', server.address().port);
 });
